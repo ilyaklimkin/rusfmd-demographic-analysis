@@ -7,7 +7,7 @@
 # ==============================================================================
 
 # set working directory
-setwd ("C:/XXX") # <- set YOUR working directory
+setwd ("C:/Users/Ilya/Google Drive/R Projects/github/rusfmd-asmr") # <- set YOUR working directory
 getwd ()
 
 # install (if necessary) & load R packages
