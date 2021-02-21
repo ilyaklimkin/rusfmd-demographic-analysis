@@ -1,4 +1,4 @@
-# ================= Calculation of SDRs with RusFMD data =======================
+# ================= Calculation of ASMRs with RusFMD data =======================
 # ==============================================================================
 # We use data from >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # Russian Fertility and Mortality Database. Center for Demographic Research,
@@ -7,7 +7,7 @@
 # ==============================================================================
 
 # set working directory
-setwd ("C:\Users\XXX\Desktop\RusFMD_SDR") # <- set YOUR working directory
+setwd ("C:/XXX") # <- set YOUR working directory
 getwd ()
 
 # install (if necessary) & load R packages
@@ -39,9 +39,12 @@ ESP$Weight <- as.numeric(ESP$Weight) # transform weights into numeric format
 # join population weights with mortality data
 dr <- left_join (dr, ESP)
 
-# calculate SDRs
-sdr <- dr %>%
-  mutate (dr_weighted = DR*Weight) %>%
+# calculate ASMRs
+asmr <- dr %>%
+  mutate (DR_Weighted = DR*Weight) %>%
   group_by (Year, Reg, Group, Sex) %>%
-  summarise (SDR_per_1000 = round((sum(dr_weighted)/1000),1)) %>%
+  summarise (ASMR_per_1000 = round((sum(DR_Weighted)/1000),1)) %>%
   ungroup ()
+
+# export
+write_csv (asmr, "asmr.csv")
