@@ -19,8 +19,8 @@ ls ()
 rm (list = ls())
 
 # load RusFMD files
-dr1989_2014 <- read.table ("DR5a1989-2014.txt", sep=",", head=T, na = ".")
-dr2015_2019 <- read.table ("DR5a2015-2019.txt", sep=",", head=T, na = ".")
+dr1989_2014 <- read.table ("data/rusfmd/mortality/DR5a1989-2014.txt", sep=",", head=T, na = ".")
+dr2015_2019 <- read.table ("data/rusfmd/mortality/DR5a2015-2019.txt", sep=",", head=T, na = ".")
 
 # bind tables
 dr <- bind_rows(dr1989_2014, dr2015_2019)
@@ -44,6 +44,9 @@ asmr <- dr %>%
   group_by (Year, Reg, Group, Sex) %>%
   summarise (ASMR_per_1000 = round((sum(DR_Weighted)/1000),1)) %>%
   ungroup ()
+
+# look at results
+head (asmr)
 
 # export
 write_csv (asmr, "asmr.csv")
