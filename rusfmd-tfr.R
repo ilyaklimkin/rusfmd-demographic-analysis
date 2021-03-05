@@ -16,30 +16,30 @@ library (tidyverse)
 
 # clear the R environment
 ls ()
-rm (list = ls())
+rm (list = ls ())
 
 # load RusFMD files
 br1989_2014 <- read.table ("data/rusfmd/fertility/BRa1989-2014.txt", sep=",", head=T, na = ".")
 br2015_2019 <- read.table ("data/rusfmd/fertility/BRa2015-2019.txt", sep=",", head=T, na = ".")
 
 # bind tables
-br <- bind_rows(br1989_2014, br2015_2019)
+br <- bind_rows (br1989_2014, br2015_2019)
 str (br) # explore data
 
 # transform data into longer format, transform age var into integer var
 br <- br %>%
-  pivot_longer (cols = starts_with("Bra"), names_to = "Age", values_to = "BR") %>%
-  mutate (Age = as.integer(gsub("Bra","",Age))) # Age into integer
+  pivot_longer (cols = starts_with ("Bra"), names_to = "Age", values_to = "BR") %>%
+  mutate (Age = as.integer (gsub ("Bra", "", Age))) # Age into integer
 
 # calculate TFRs
 tfr <- br %>%
   filter (Age %in% c(15:49)) %>% # filter ages
   group_by (Year, Reg, Group) %>%
-  summarise (TFR = round((sum(BR)/1000000),2)) %>%
+  summarise (TFR = round ((sum (BR)/1000000),2)) %>%
   ungroup () %>%
   #drop_na ()
 
-# look at results
+# look at the results
 head (tfr)
 
 # export
