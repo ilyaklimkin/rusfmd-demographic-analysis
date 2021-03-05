@@ -16,19 +16,19 @@ library (tidyverse)
 
 # clear the R environment
 ls ()
-rm (list = ls())
+rm (list = ls ())
 
 # load RusFMD files
 dr1989_2014 <- read.table ("data/rusfmd/mortality/DR5a1989-2014.txt", sep=",", head=T, na = ".")
 dr2015_2019 <- read.table ("data/rusfmd/mortality/DR5a2015-2019.txt", sep=",", head=T, na = ".")
 
 # bind tables
-dr <- bind_rows(dr1989_2014, dr2015_2019)
+dr <- bind_rows (dr1989_2014, dr2015_2019)
 str (dr) # explore data
 
 # transform data into longer format
 dr <- dr %>%
-  pivot_longer (cols = starts_with("DrAa"), names_to = "Age", values_to = "DR")
+  pivot_longer (cols = starts_with ("DrAa"), names_to = "Age", values_to = "DR")
 
 # set the age standard (European Population Standard 1976 by default)
 Age <- unique (dr$Age)
@@ -42,10 +42,10 @@ dr <- left_join (dr, ESP)
 asmr <- dr %>%
   mutate (DR_Weighted = DR*Weight) %>%
   group_by (Year, Reg, Group, Sex) %>%
-  summarise (ASMR_per_1000 = round((sum(DR_Weighted)/1000),1)) %>%
+  summarise (ASMR_per_1000 = round ((sum (DR_Weighted)/1000), 1)) %>%
   ungroup ()
 
-# look at results
+# look at the results
 head (asmr)
 
 # export
