@@ -6,7 +6,7 @@
 # (data downloaded on [22-10-2020]).
 # ==============================================================================
 
-# NEW LINE
+# removed line
 
 # set working directory
 setwd ("C:/Users/Ilya/Google Drive/R Projects/github/rusfmd-demographic-analysis") # <- set YOUR working directory
