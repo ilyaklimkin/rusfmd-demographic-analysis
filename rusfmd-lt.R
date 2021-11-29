@@ -54,7 +54,7 @@ lt <- dr %>%
            Lx = case_when (
              x < 85 ~ ax*lx+(n-ax)*lead(lx),
              x == 85 ~ ax*lx),
-           ex = rev (cumsum (rev (Lx)))) # Tx = ex; need to explain the calculation
+           ex = rev (cumsum (rev (Lx)))/lx) # Tx = ex; need to explain the calculation
 
 # look at the results
 lt
