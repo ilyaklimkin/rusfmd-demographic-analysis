@@ -34,7 +34,8 @@ dr <- dr %>%
 
 # set the age standard (European Population Standard 1976 by default)
 Age <- unique (dr$Age)
-Weight <- c(0.016,0.064,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.06,0.05,0.04,0.03,0.02,0.01,0.01) # set the vector of weights
+Weight <- c(0.016,0.064,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,
+            0.07,0.06,0.05,0.04,0.03,0.02,0.01,0.01) # set the vector of weights
 ESP <- tibble (Age,Weight) # merge the vector of age groups and the vector population weights into tibble
 
 # join population weights with mortality data
