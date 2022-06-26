@@ -6,8 +6,8 @@
 # (data downloaded on [22-10-2020]).
 # ==============================================================================
 
-# set working directory; place data files folder into this directory
-setwd("D:/git/rusfmd-demographic-analysis")
+# set working directory (instead of "..."); place data files folder into this directory
+setwd("...")
 getwd()
 
 # install (if necessary) & load R packages
