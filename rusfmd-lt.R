@@ -7,8 +7,8 @@
 # ==============================================================================
 
 # set working directory (instead of "..."); place data files folder into this directory
-setwd ("D:/git/rusfmd-demographic-analysis") # <- set YOUR working directory
-getwd ()
+setwd("...") # <- set YOUR working directory
+getwd()
 
 # install (if necessary) & load R packages
 #install.packages ("tidyverse")
@@ -16,7 +16,7 @@ library(tidyverse)
 
 # clear the R environment
 ls()
-rm(list = ls ())
+rm(list = ls())
 
 # load RusFMD files
 dr1989_2014 <- read.table("data/rusfmd/mortality/DR5a1989-2014.txt",
