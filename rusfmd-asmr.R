@@ -6,10 +6,6 @@
 # (data downloaded on [22-10-2020]).
 # ==============================================================================
 
-# set working directory (instead of "..."); place data files folder into this directory
-setwd("...")
-getwd()
-
 # install (if necessary) & load R packages
 #install.packages("tidyverse")
 library(tidyverse)
@@ -53,21 +49,29 @@ head(asmr)
 
 # plot
 asmr %>%
-  mutate(Group = case_when(Group == "T" ~ "Total",
-                           Group == "U" ~ "Urban",
-                           Group == "R" ~ "Rural"),
-         Sex = case_when(Sex == "M" ~ "Males",
-                         Sex == "F" ~ "Females",
-                         Sex == "B" ~ "Both sexes")) %>%
+  mutate(
+    Group = case_when(
+      Group == "T" ~ "Total",
+      Group == "U" ~ "Urban",
+      Group == "R" ~ "Rural"
+    ),
+    Sex = case_when(
+      Sex == "M" ~ "Males",
+      Sex == "F" ~ "Females",
+      Sex == "B" ~ "Both sexes"
+    )
+  ) %>%
   filter(Reg == 1100) %>% # see codebook at http://demogr.nes.ru/index.php/en/demogr_indicat/data_description
   ggplot(aes(Year, ASMR_per_1000)) +
   geom_line(aes(color = Group)) +
   facet_wrap(~Sex) +
   scale_x_continuous(breaks = seq(1990, 2020, 5)) +
-  labs(title = "Russia",
-       x = "",
-       y = "Age-standardised mortality rate,\nper 1000 person-years",
-       color = "Type of settlement") +
+  labs(
+    title = "Russia",
+    x = "",
+    y = "Age-standardised mortality rate,\nper 1000 person-years",
+    color = "Type of settlement"
+  ) +
   theme_bw() +
   theme(legend.position = "bottom")
 
