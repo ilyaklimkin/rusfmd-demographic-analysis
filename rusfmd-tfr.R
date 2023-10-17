@@ -6,10 +6,6 @@
 # (data downloaded on [22-10-2020]).
 # ==============================================================================
 
-# set working directory (instead of "..."); place data files folder into this directory
-setwd("...")
-getwd()
-
 # install (if necessary) & load R packages
 #install.packages("tidyverse")
 library(tidyverse)
@@ -46,17 +42,23 @@ head(tfr)
 
 # plot
 tfr %>%
-  mutate(Group = case_when(Group == "T" ~ "Total",
-                           Group == "U" ~ "Urban",
-                           Group == "R" ~ "Rural")) %>%
+  mutate(
+    Group = case_when(
+      Group == "T" ~ "Total",
+      Group == "U" ~ "Urban",
+      Group == "R" ~ "Rural"
+    )
+  ) %>%
   filter(Reg == 1165) %>% # see codebook at http://demogr.nes.ru/index.php/en/demogr_indicat/data_description
   ggplot(aes(Year, TFR)) +
   geom_line(aes(color = Group)) +
   scale_x_continuous(breaks = seq(1989, 2019, 1)) +
-  labs(title = "Sverdlovsk oblast",
-       x = "",
-       y = "Children per woman aged 15 to 49 years",
-       color = "Type of settlement") +
+  labs(
+    title = "Sverdlovsk oblast",
+    x = "",
+    y = "Children per woman aged 15 to 49 years",
+    color = "Type of settlement"
+  ) +
   theme_classic() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 
